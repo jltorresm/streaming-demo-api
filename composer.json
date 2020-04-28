@@ -1,0 +1,6 @@
+{
+	"require": {
+		"mefworks/http": "^1.0",
+		"ext-json": "*"
+	}
+}
