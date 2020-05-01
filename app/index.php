@@ -2,6 +2,7 @@
 
 date_default_timezone_set('UTC');
 require __DIR__ . '/../vendor/autoload.php';
+$config = require __DIR__ . '/../config/config.php';
 
 use MediaServer\Action\ActionInterface;
 use MediaServer\Action\GetVideo;
@@ -61,7 +62,7 @@ catch (ResourceNotFoundException $e)
 /**
  * @var $handler ActionInterface
  */
-$handler = new $parameters["_controller"]();
+$handler = new $parameters["_controller"]($config);
 $response = $handler->run($request);
 $response->prepare($request);
 $response->send();
