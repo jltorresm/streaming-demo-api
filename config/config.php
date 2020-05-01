@@ -7,7 +7,7 @@ use mef\Sql\Writer\MySqlWriter;
 
 return [
 	"uploads" => [
-		"type"   => "remote",                          // remote|local
+		"type"   => "remote",                           // remote|local
 		"local"  => __DIR__ . "/../uploads/",           // for when uploads.type = local
 		"remote" => "s3://simple-media-server/source/", // for when uploads.type = remote
 	],
@@ -20,7 +20,9 @@ return [
 			"destination"   => "s3://simple-media-server/transcoded/",
 			"job"           => require __DIR__ . "/mediaConvert.php",
 		],
-		"cloudFormation" => [],
+		"cloudFormation" => [
+			"url" => "https://dc0k1t1zgdrge.cloudfront.net/"
+		],
 	],
 
 	"database" => function (): SqlDriver
