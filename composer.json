@@ -1,8 +1,12 @@
 {
 	"require": {
+		"ext-pdo": "*",
 		"ext-json": "*",
 		"symfony/routing": "^5.0",
-		"symfony/http-foundation": "^5.0"
+		"symfony/http-foundation": "^5.0",
+		"aws/aws-sdk-php": "^3.135",
+		"mefworks/db": "^1.2",
+		"mefworks/sql": "^1.0"
 	},
 	"autoload": {
 		"psr-4": {
