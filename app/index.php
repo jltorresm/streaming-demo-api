@@ -5,6 +5,7 @@ require __DIR__ . '/../vendor/autoload.php';
 $config = require __DIR__ . '/../config/config.php';
 
 use MediaServer\Action\ActionInterface;
+use MediaServer\Action\GetUpload;
 use MediaServer\Action\GetVideo;
 use MediaServer\Action\PostVideo;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,6 +21,7 @@ use Symfony\Component\Routing\RouteCollection;
  * Define a few routes.
  ******************************************************************************/
 $routeDefinition = [
+	["getUpload", new Route('/upload', ['_controller' => GetUpload::class], [], [], null, ["http", "https"], "GET")],
 	["postVideo", new Route('/video', ['_controller' => PostVideo::class], [], [], null, ["http", "https"], "POST")],
 	["getVideo", new Route('/video', ['_controller' => GetVideo::class], [], [], null, ["http", "https"], "GET")],
 ];

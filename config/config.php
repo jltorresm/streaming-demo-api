@@ -14,6 +14,7 @@ return [
 
 	"aws" => [
 		"clientOptions"  => ["profile" => "media-server", "region" => "us-east-2", "version" => "latest"],
+		"s3"             => ["bucket" => "simple-media-server"],
 		"mediaConvert"   => [
 			"clientOptions" => ["profile" => "media-server", "region" => "us-east-2", "version" => "latest"],
 			"source"        => "s3://simple-media-server/source/",
