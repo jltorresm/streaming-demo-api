@@ -8,6 +8,7 @@ use MediaServer\Action\ActionInterface;
 use MediaServer\Action\GetUpload;
 use MediaServer\Action\GetVideo;
 use MediaServer\Action\PostVideo;
+use MediaServer\Action\PutUpload;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Exception\MethodNotAllowedException;
@@ -22,6 +23,7 @@ use Symfony\Component\Routing\RouteCollection;
  ******************************************************************************/
 $routeDefinition = [
 	["getUpload", new Route('/upload', ['_controller' => GetUpload::class], [], [], null, ["http", "https"], "GET")],
+	["putUpload", new Route('/upload', ['_controller' => PutUpload::class], [], [], null, ["http", "https"], "PUT")],
 	["postVideo", new Route('/video', ['_controller' => PostVideo::class], [], [], null, ["http", "https"], "POST")],
 	["getVideo", new Route('/video', ['_controller' => GetVideo::class], [], [], null, ["http", "https"], "GET")],
 ];
