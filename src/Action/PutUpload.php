@@ -36,7 +36,7 @@ class PutUpload extends AbstractAction
 		/*************************************************************************
 		 * Define all the video metadata we need and save the reference in the DB.
 		 ************************************************************************/
-		$videoMeta = $data + ["created_dt" => gmdate(DATE_RFC3339)];
+		$videoMeta = $data + ["processed" => false, "created_dt" => gmdate(DATE_RFC3339)];
 
 		/**
 		 * @var $database SqlDriver

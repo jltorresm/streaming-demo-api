@@ -73,6 +73,7 @@ class PostVideo extends AbstractAction
 			"name"       => $video->getClientOriginalName(),
 			"uuid"       => hash("sha256", $video->openFile("r")->fread($video->getSize())),
 			"type"       => $video->getMimeType(),
+			"processed"  => false,
 			"created_dt" => gmdate(DATE_RFC3339),
 		];
 
