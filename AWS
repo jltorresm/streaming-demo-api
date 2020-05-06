@@ -16,3 +16,10 @@ CloudFront
 
 Lambda
     - Created the "simpleMediaServerAutoTranscode" function.
+
+SNS
+    - Created the "SimpleMediaServerTranscodingTopic" topic.
+    - Created the "6ba76733-dd75-484c-bdd7-c03350cf5f17" subscription.
+
+CloudWatch
+    - Created the "MediaServerNotificationRule" rule.
