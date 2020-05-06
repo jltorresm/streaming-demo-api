@@ -77,8 +77,7 @@ def handler(event, context):
         endpoints = mediaconvert_client.describe_endpoints()
 
         # add the account-specific endpoint to the client session
-        client = boto3.client('mediaconvert', region_name=region, endpoint_url=endpoints['Endpoints'][0]['Url'],
-                              verify=False)
+        client = boto3.client('mediaconvert', region_name=region, endpoint_url=endpoints['Endpoints'][0]['Url'], verify=False)
 
         for j in jobs:
             jobSettings = j['settings']
