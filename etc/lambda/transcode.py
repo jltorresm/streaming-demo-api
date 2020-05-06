@@ -53,7 +53,7 @@ def handler(event, context):
     statusCode = 200
     jobs = []
     job = {}
-    assetID = sourceS3Key
+    assetID = sourceS3Key.split('/')[1].split('.')[0] # Insecure, but this is a demo, should be safe-ish.
 
     # Use MediaConvert SDK UserMetadata to tag jobs with the assetID
     # Events from MediaConvert will have the assetID in UserMedata
