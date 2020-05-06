@@ -3,14 +3,32 @@
 namespace MediaServer\Action;
 
 use Aws\S3\S3Client;
-use MediaServer\Service\VideoTranscoder;
 use mef\Sql\Driver\SqlDriver;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class PostVideo. Upload a video either to a local folder or to a remote
+ * location in AWS. This endpoint requires the actual binary content of the
+ * video, for that reason it is deprecated and we encourage to use alternative
+ * endpoints.
+ *
+ * @deprecated Discouraged to use b/c it requires the whole binary data.
+ * @see        PutUpload
+ * @package    MediaServer\Action
+ */
 class PostVideo extends AbstractAction
 {
+	/**
+	 * Execute the request handler.
+	 *
+	 * @param Request $request The request to handle.
+	 *
+	 * @return Response
+	 * @deprecated Discouraged to use b/c it requires the whole binary data.
+	 * @see        PutUpload::run()
+	 */
 	public function run(Request $request): Response
 	{
 		/*************************************************************************
@@ -90,17 +108,19 @@ class PostVideo extends AbstractAction
 		$database->insert()->into("video")->namedValues($videoMeta)->execute();
 
 		/*************************************************************************
-		 * And handle transcoding for remote uploads.
+		 * Note: We are just handling metadata at this point. The transcoding
+		 *       process is handled asynchronously in the AWS infrastructure
+		 *       via lambda functions and S3 triggers.
 		 *
-		 * TODO: This is a big candidate to be moved to an asynchronous handler
-		 *       either via jobs, lambda functions, AWS pipelines/triggers, or any
-		 *       other async solution.
+		 * If, for any reason, we want to do the transcode call manually,
+		 * uncomment the lines below. Just make sure to de-activate the triggers
+		 * in AWS first, otherwise you could be doing the process twice.
 		 ************************************************************************/
-		if ($this->config["uploads"]["type"] == "remote")
-		{
-			$transcoder = new VideoTranscoder($this->config);
-			$transcoder->transcode($videoMeta);
-		}
+		// if ($this->config["uploads"]["type"] == "remote")
+		// {
+		// 	$transcoder = new VideoTranscoder($this->config);
+		// 	$transcoder->transcode($videoMeta);
+		// }
 
 		return new Response("OK");
 	}
