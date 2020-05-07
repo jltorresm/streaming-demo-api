@@ -69,7 +69,9 @@ class PostSns extends AbstractAction
 			return new Response("OK");
 		}
 
+		//
 		// log just to keep track
+		//
 		$msg = sprintf(
 			"[[DEBUG]\t%s\tType: %s\t Status: %s\nMessageId: %s\tTopic arn: %s",
 			$data["Timestamp"]->format(DATE_W3C),
@@ -80,25 +82,30 @@ class PostSns extends AbstractAction
 		);
 		error_log($msg);
 
+		/**
+		 * @var $database SqlDriver
+		 */
+		$database = $this->config["database"]();
 
 		switch ($data["Message"]["detail"]["status"])
 		{
 			case "COMPLETE":
+				//
 				// Set the processed flag in the DB to true.
-				/**
-				 * @var $database SqlDriver
-				 */
-				$database = $this->config["database"]();
+				//
 				$database->update()->table("video")
 					->namedValues(["processed" => 1])
 					->where("uuid", $data["Message"]["detail"]["userMetadata"]["assetID"])
 					->execute();
-
-
 				break;
 			case "ERROR":
-				// TODO: set the error flag in the DB to true.
-				//       need to add the column to the schema.s
+				//
+				// Set the error flag in the DB to true.
+				//
+				$database->update()->table("video")
+					->namedValues(["error" => 1])
+					->where("uuid", $data["Message"]["detail"]["userMetadata"]["assetID"])
+					->execute();
 				break;
 			default:
 				http_response_code(400);
