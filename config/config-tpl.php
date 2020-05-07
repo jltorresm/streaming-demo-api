@@ -9,20 +9,20 @@ return [
 	"uploads" => [
 		"type"   => "remote",                           // remote|local
 		"local"  => __DIR__ . "/../uploads/",           // for when uploads.type = local
-		"remote" => "s3://simple-media-server/source/", // for when uploads.type = remote
+		"remote" => "---", // for when uploads.type = remote
 	],
 
 	"aws" => [
 		"clientOptions"  => ["profile" => "media-server", "region" => "us-east-2", "version" => "latest"],
-		"s3"             => ["bucket" => "simple-media-server"],
+		"s3"             => ["bucket" => "---"],
 		"mediaConvert"   => [
 			"clientOptions" => ["profile" => "media-server", "region" => "us-east-2", "version" => "latest"],
-			"source"        => "s3://simple-media-server/source/",
-			"destination"   => "s3://simple-media-server/transcoded/",
+			"source"        => "---",
+			"destination"   => "---",
 			"job"           => require __DIR__ . "/mediaConvert.php",
 		],
 		"cloudFormation" => [
-			"url" => "https://dc0k1t1zgdrge.cloudfront.net/"
+			"url" => "---"
 		],
 	],
 

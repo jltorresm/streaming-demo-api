@@ -8,5 +8,5 @@ and third party services.
 - [composer](https://getcomposer.org/)
 
 # Running locally
-- Modify the config to suit your needs.
+- `cp config/config-tpl.php config/config.php` and modify it to suit your needs.
 - exec `bin/start-server.php`.
