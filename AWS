@@ -1,25 +1,31 @@
 Amazon S3
-    - Created bucket simple-media-server (not public)
+	- Created bucket simple-media-server (not public)
 
 IAM
-    - Created "SimpleMediaServerRole" role
-    - Created "SimpleMediaServerLambdaRole" role
-    - Created the "SimpleMediaServerLambdaRolePolicy" policy
+	- Created "SimpleMediaServerRole" role
+	- Created "SimpleMediaServerLambdaRole" role
+	- Created the "SimpleMediaServerLambdaRolePolicy" policy
+	- Created "SimpleMediaServerEC2Role" role
 
 AWS Elemental MediaConvert
-    - Created output preset "AVC codec SD res @30fps 1 pass" (NOT USED)
-    - Created output preset "AVC codec HD res @30fps 1 pass" (NOT USED)
+	- Created output preset "AVC codec SD res @30fps 1 pass" (NOT USED)
+	- Created output preset "AVC codec HD res @30fps 1 pass" (NOT USED)
 
 CloudFront
-    - Created distribution "dc0k1t1zgdrge.cloudfront.net" pointing to the simple-media-server bucket
-    - Created the Origin Access Identity "access-identity-simple-media-server.s3.amazonaws.com" with ID "EG8OW3CQN86NJ"
+	- Created distribution "dc0k1t1zgdrge.cloudfront.net" pointing to the simple-media-server bucket
+	- Created the Origin Access Identity "access-identity-simple-media-server.s3.amazonaws.com" with ID "EG8OW3CQN86NJ"
 
 Lambda
-    - Created the "simpleMediaServerAutoTranscode" function.
+	- Created the "simpleMediaServerAutoTranscode" function.
 
 SNS
-    - Created the "SimpleMediaServerTranscodingTopic" topic.
-    - Created the "6ba76733-dd75-484c-bdd7-c03350cf5f17" subscription.
+	- Created the "SimpleMediaServerTranscodingTopic" topic.
+	- Created the "6ba76733-dd75-484c-bdd7-c03350cf5f17" subscription.
 
 CloudWatch
-    - Created the "MediaServerNotificationRule" rule.
+	- Created the "MediaServerNotificationRule" rule.
+
+EC2
+	- Created an ubuntu nano instance called "Streaming Demo API" to host the demo api. us-east-1
+	- Created the "SimpleStreamingApi2" PEM
+	- Created "Streaming Demo API Security Group"
