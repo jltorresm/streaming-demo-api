@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace MediaServer\Service;
 
@@ -10,27 +10,27 @@ class VideoTranscoder
 	/**
 	 * @var MediaConvertClient Aws MediaConverter client handle.
 	 */
-	private MediaConvertClient $mediaConvertClient;
+	private $mediaConvertClient;
 
 	/**
 	 * @var string Where the original files are stored.
 	 */
-	private string $source;
+	private $source;
 
 	/**
 	 * @var string Where the transcoded files are stored.
 	 */
-	private string $destination;
+	private $destination;
 
 	/**
 	 * @var Closure Closure that generates the MediaConvert job spec.
 	 */
-	private Closure $mediaConvertJobGenerator;
+	private $mediaConvertJobGenerator;
 
 	/**
 	 * VideoTranscoder constructor.
 	 *
-	 * @param array $config App configuration.
+	 * @param array  $config  App configuration.
 	 */
 	public function __construct(array $config)
 	{
@@ -40,7 +40,7 @@ class VideoTranscoder
 		$this->mediaConvertClient = $this->getMediaConvertClient($config["aws"]["clientOptions"]);
 	}
 
-	private function getMediaConvertClient(array $baseOptions): MediaConvertClient
+	private function getMediaConvertClient(array $baseOptions) : MediaConvertClient
 	{
 		$tmpClient = new MediaConvertClient($baseOptions);
 		$customEndpoints = $tmpClient->describeEndpoints();
@@ -50,7 +50,7 @@ class VideoTranscoder
 	}
 
 	/**
-	 * @param array $video Some info about the video to identify it and be able to start the transcoding process.
+	 * @param array  $video  Some info about the video to identify it and be able to start the transcoding process.
 	 */
 	public function transcode(array $video)
 	{
