@@ -2,3 +2,4 @@
 vendor
 uploads
 config/config.php
+composer.phar
